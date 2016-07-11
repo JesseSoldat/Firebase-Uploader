@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>File Upload</title>
+	<style media="screen">
+		body {
+			display: flex;
+			min-height: 100vh;
+			width: 100%;
+			padding: 0;
+			margin: 0;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+		#upload {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 50%;
+			margin-bottom: 15px
+		}
+	</style>
+</head>
+
+<body>
+
+<progress value="0" max="100" id="upload">0%</progress>
+<input type="file" value="upload" id="inputFile">
+
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBkyPopLr6_O8iIPnEr--ZGcsW1ecxdr3s",
+    authDomain: "file-upload-c3300.firebaseapp.com",
+    databaseURL: "https://file-upload-c3300.firebaseio.com",
+    storageBucket: "file-upload-c3300.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
+    
+</body>
+</html>
