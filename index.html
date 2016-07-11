@@ -13,7 +13,7 @@
 			justify-content: center;
 			flex-direction: column;
 		}
-		#upload {
+		#uploader {
 			-webkit-appearance: none;
 			appearance: none;
 			width: 50%;
@@ -24,7 +24,7 @@
 
 <body>
 
-<progress value="0" max="100" id="upload">0%</progress>
+<progress value="0" max="100" id="uploader">0%</progress>
 <input type="file" value="upload" id="inputFile">
 
 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
@@ -36,7 +36,42 @@
     databaseURL: "https://file-upload-c3300.firebaseio.com",
     storageBucket: "file-upload-c3300.appspot.com",
   };
+  
   firebase.initializeApp(config);
+
+  //Get Elements
+  var uploader = document.getElementById('uploader');
+  var inputFile = document.getElementById(
+  'inputFile')
+
+  //Listen for file selection
+  inputFile.addEventListener('change', function(e){
+  	//Get File
+  	var file = e.target.files[0];
+  	
+  	//Create a storage ref
+  	var storageRef = firebase.storage().ref('imgs/'+ file.name);
+  	//Upload file
+  	var task = storageRef.put(file);
+  	//Update progress bar
+  	task.on('state_changed', 
+
+  		function progress(snapshot){
+  			var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+  			uploader.value = percentage;
+  		},
+
+  		function error(err){
+
+  		},
+
+  		function complete() {
+
+  		}
+
+  		)
+  })
 </script>
     
 </body>
